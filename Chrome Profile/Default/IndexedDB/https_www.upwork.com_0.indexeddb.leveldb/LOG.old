@@ -1,0 +1,37 @@
+2023/02/13-14:50:47.135 3698 Reusing MANIFEST D:\GitHub\Upwork-Jobs-Scrapper-Selenium\Chrome Profile\Default\IndexedDB\https_www.upwork.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/02/13-14:50:47.135 3698 Recovering log #84
+2023/02/13-14:50:47.135 3698 Reusing old log D:\GitHub\Upwork-Jobs-Scrapper-Selenium\Chrome Profile\Default\IndexedDB\https_www.upwork.com_0.indexeddb.leveldb/000084.log 
+2023/02/13-14:50:47.135 3698 Delete type=2 #83
+2023/02/13-14:50:49.019 3698 Level-0 table #89: started
+2023/02/13-14:50:49.039 3698 Level-0 table #89: 613 bytes OK
+2023/02/13-14:50:49.045 3698 Delete type=0 #84
+2023/02/13-14:50:49.045 3698 Manual compaction at level-0 from '\x00\x1f\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00 \x00\x00\x00' @ 0 : 0; will stop at '\x00 \x00\x00\x05' @ 567 : 1
+2023/02/13-14:50:49.046 3698 Compacting 1@0 + 1@1 files
+2023/02/13-14:50:49.052 3698 Generated table #90@0: 79 keys, 1619 bytes
+2023/02/13-14:50:49.052 3698 Compacted 1@0 + 1@1 files => 1619 bytes
+2023/02/13-14:50:49.056 3698 compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/02/13-14:50:49.056 3698 Delete type=2 #89
+2023/02/13-14:50:49.056 3698 Manual compaction at level-0 from '\x00 \x00\x00\x05' @ 567 : 1 .. '\x00 \x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/02/13-14:50:49.057 1c40 Level-0 table #92: started
+2023/02/13-14:50:49.069 1c40 Level-0 table #92: 472 bytes OK
+2023/02/13-14:50:49.073 1c40 Delete type=2 #86
+2023/02/13-14:50:49.073 1c40 Delete type=0 #88
+2023/02/13-14:50:49.074 1c40 Manual compaction at level-0 from '\x00 \x00\x00\x00' @ 72057594037927935 : 1 .. '\x00!\x00\x00\x00' @ 0 : 0; will stop at '\x00 \x00\x00\x05' @ 594 : 0
+2023/02/13-14:50:49.074 1c40 Compacting 1@0 + 1@1 files
+2023/02/13-14:50:49.080 1c40 Generated table #93@0: 77 keys, 1596 bytes
+2023/02/13-14:50:49.080 1c40 Compacted 1@0 + 1@1 files => 1596 bytes
+2023/02/13-14:50:49.086 1c40 compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/02/13-14:50:49.086 1c40 Delete type=2 #92
+2023/02/13-14:50:49.086 1c40 Manual compaction at level-0 from '\x00 \x00\x00\x05' @ 594 : 0 .. '\x00!\x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/02/13-14:50:52.954 3d1c Manual compaction at level-0 from '\x00"\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00#\x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/02/13-14:50:52.959 494c Level-0 table #95: started
+2023/02/13-14:50:52.966 494c Level-0 table #95: 762 bytes OK
+2023/02/13-14:50:52.969 494c Delete type=2 #90
+2023/02/13-14:50:52.969 494c Delete type=0 #91
+2023/02/13-14:50:52.970 494c Manual compaction at level-0 from '\x00!\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00"\x00\x00\x00' @ 0 : 0; will stop at '\x00"\x00\x00\x05' @ 605 : 1
+2023/02/13-14:50:52.970 494c Compacting 1@0 + 1@1 files
+2023/02/13-14:50:52.976 494c Generated table #96@0: 79 keys, 1648 bytes
+2023/02/13-14:50:52.976 494c Compacted 1@0 + 1@1 files => 1648 bytes
+2023/02/13-14:50:52.980 494c compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/02/13-14:50:52.980 494c Delete type=2 #95
+2023/02/13-14:50:52.981 494c Manual compaction at level-0 from '\x00"\x00\x00\x05' @ 605 : 1 .. '\x00"\x00\x00\x00' @ 0 : 0; will stop at (end)

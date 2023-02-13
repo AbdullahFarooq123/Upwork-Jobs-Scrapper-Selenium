@@ -1,0 +1,26 @@
+2023/02/13-14:55:34.481 4b7c Reusing MANIFEST D:\GitHub\Upwork-Jobs-Scrapper-Selenium\Chrome Profile\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/02/13-14:55:34.481 4b7c Recovering log #222
+2023/02/13-14:55:34.536 4b7c Reusing old log D:\GitHub\Upwork-Jobs-Scrapper-Selenium\Chrome Profile\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000222.log 
+2023/02/13-14:55:36.020 2134 Level-0 table #234: started
+2023/02/13-14:55:36.068 2134 Level-0 table #234: 1050154 bytes OK
+2023/02/13-14:55:36.075 2134 Delete type=0 #222
+2023/02/13-14:55:36.760 4d9c Compacting 1@1 + 8@2 files
+2023/02/13-14:55:37.601 4d9c Generated table #235@1: 27115 keys, 2207771 bytes
+2023/02/13-14:55:37.633 4d9c Generated table #236@1: 2950 keys, 2162018 bytes
+2023/02/13-14:55:37.674 4d9c Generated table #237@1: 2839 keys, 2155867 bytes
+2023/02/13-14:55:37.755 4d9c Generated table #238@1: 15567 keys, 2193141 bytes
+2023/02/13-14:55:37.855 4d9c Generated table #239@1: 26760 keys, 2263487 bytes
+2023/02/13-14:55:37.921 4d9c Generated table #240@1: 27851 keys, 2155516 bytes
+2023/02/13-14:55:38.041 4d9c Generated table #241@1: 106565 keys, 2257781 bytes
+2023/02/13-14:55:38.108 4d9c Generated table #242@1: 88345 keys, 1914383 bytes
+2023/02/13-14:55:38.109 4d9c Compacted 1@1 + 8@2 files => 17309964 bytes
+2023/02/13-14:55:38.113 4d9c compacted to: files[ 0 0 8 0 0 0 0 ]
+2023/02/13-14:55:38.113 4d9c Delete type=2 #224
+2023/02/13-14:55:38.113 4d9c Delete type=2 #225
+2023/02/13-14:55:38.113 4d9c Delete type=2 #226
+2023/02/13-14:55:38.113 4d9c Delete type=2 #227
+2023/02/13-14:55:38.113 4d9c Delete type=2 #228
+2023/02/13-14:55:38.113 4d9c Delete type=2 #229
+2023/02/13-14:55:38.113 4d9c Delete type=2 #230
+2023/02/13-14:55:38.113 4d9c Delete type=2 #231
+2023/02/13-14:55:38.113 4d9c Delete type=2 #234

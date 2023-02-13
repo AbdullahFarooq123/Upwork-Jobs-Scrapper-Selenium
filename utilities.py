@@ -1,10 +1,12 @@
 import json
+import os
 import time
 from datetime import datetime
 from telnetlib import EC
 
 import bs4.element
 import requests
+import selenium
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -20,16 +22,25 @@ from client_class import Client
 
 
 def init_driver() -> webdriver:
+    current_directory = os.getcwd()
     chrome_options = Options()
     prefs = {"profile.default_content_setting_values.notifications": 2}
     chrome_options.add_argument('--disable-notifications')
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
     chrome_options.add_argument('--profile-directory=Default')
-    chrome_options.add_argument('--user-data-dir=C:\\Users\\hp\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1\\')
+    chrome_options.add_argument(f'--user-data-dir={current_directory}\\Chrome Profile\\')
     chrome_options.add_experimental_option("prefs", prefs)
     # chrome_options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    driver.maximize_window()
+    try:
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    except selenium.common.exceptions.WebDriverException:
+        print('Chrome already running!')
+        print('Please close the previous chrome window and restart!')
+        exit(1)
+    try:
+        driver.maximize_window()
+    except selenium.common.exceptions.WebDriverException:
+        pass
     return driver
 
 
@@ -137,8 +148,11 @@ def validate_client(client: Client, driver: webdriver) -> bool:
     if client.budget < 50.0:
         return False
     driver.get(client.link)
-    driver.maximize_window()
-    WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'body')))
+    try:
+        driver.maximize_window()
+    except selenium.common.exceptions.WebDriverException:
+        pass
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'body')))
     body = BeautifulSoup(driver.find_element(By.CSS_SELECTOR, 'body').get_attribute('innerHTML'), 'html.parser')
     try:
         about_client_container = body.find('li', {'data-qa': 'client-job-posting-stats'})
@@ -170,35 +184,55 @@ def get_valid_clients(items_by_category: dict, prev_data: list, driver: webdrive
 
 def get_whatssapp_txt_box(my_contact: str, driver: webdriver):
     driver.get('https://web.whatsapp.com/')
-    error_count = 0
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'body')))
+    time.sleep(5)
+    body = BeautifulSoup(driver.find_element(By.CSS_SELECTOR, 'body').get_attribute('innerHTML'), 'html.parser')
+    qr_code = body.find('div', {'data-testid': 'qrcode'})
+    if qr_code is not None:
+        input("Please login and press 'Enter' to continue")
     pane = None
     sleep_time = 5
-    while error_count < 5:
+    while pane is None:
         try:
             pane = driver.find_element(By.CSS_SELECTOR, '#pane-side')
-            break
         except NoSuchElementException:
-            if error_count <= 3:
-                time.sleep(sleep_time)
-                error_count += 1
-                sleep_time += 3
-                continue
-            input("Please scan and press 'Enter' to continue")
-            error_count += 1
-    if pane is None:
-        print('Error : Cannot send messages on whatsapp!')
-        exit(1)
-    time.sleep(3)
-    contacts = driver.find_elements(By.CSS_SELECTOR, 'div.lhggkp7q.ln8gz9je.rx9719la')
+            print('Error : Cant Load Whatsapp left pane (utilities.py : line 191)')
+            time.sleep(sleep_time)
+            sleep_time = 10
+    contacts = None
+    sleep_time = 5
+    while contacts is None:
+        try:
+            contacts = driver.find_elements(By.CSS_SELECTOR, 'div.lhggkp7q.ln8gz9je.rx9719la')
+        except NoSuchElementException:
+            print('Error : Cant Load Whatsapp contacts (utilities.py : line 201)')
+            time.sleep(sleep_time)
+            sleep_time = 10
     for contact in contacts:
         contact_name = contact.text
         if my_contact in contact_name:
             contact.click()
-            footer = driver.find_element(By.TAG_NAME, 'footer')
-            text_box = footer.find_element(By.CSS_SELECTOR,
-                                           'div.fd365im1.to2l77zo.bbv8nyr4.gfz4du6o.ag5g9lrv.bze30y65.bdf91cm1.mwp4sxku')
+            footer = None
+            sleep_time = 5
+            while footer is None:
+                try:
+                    footer = driver.find_element(By.TAG_NAME, 'footer')
+                except NoSuchElementException:
+                    print('Error : Cant Load Whatsapp contact footer (utilities.py : line 214)')
+                    time.sleep(sleep_time)
+                    sleep_time = 10
+            text_box = None
+            while text_box is None:
+                try:
+                    # fd365im1 to2l77zo bbv8nyr4 gfz4du6o ag5g9lrv bze30y65 kao4egtt mwp4sxku
+                    text_box = footer.find_element(By.XPATH, '//footer//div[@role="textbox"]')
+                except NoSuchElementException:
+                    print('Error : Cant Load Whatsapp text box (utilities.py : line 222)')
+                    time.sleep(sleep_time)
+                    sleep_time = 10
             text_box.click()
             return text_box
+    return None
 
 
 def send_msg_to_txt_box(message: str, text_box, category: str):
