@@ -1,3 +1,5 @@
 Chrome Profile
-/__pycache__
 .idea
+Models/__pycache__
+Utilities/__pycache__
+prev.json

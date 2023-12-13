@@ -1,5 +1,6 @@
-import re
 import html
+import re
+import xml.sax.saxutils as saxutils
 from datetime import datetime
 
 import bs4
@@ -11,11 +12,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from Models.BotSettingsModel import BotSettings
 from Models.ClientModel import Client
 from Models.JobValidationModel import JobValidation
-from Utilities.FileReader import read_settings_data
-import xml.sax.saxutils as saxutils
 
 
 def read_data_from_feeds(rss_feed: dict) -> dict:

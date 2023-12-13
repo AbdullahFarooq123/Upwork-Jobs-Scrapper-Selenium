@@ -21,7 +21,12 @@
       "expensify",
       "swift",
       "suite",
-      "shopify"
+      "shopify",
+      "magento",
+      "react native",
+      "python",
+      "java",
+      "mern"
     ]
   }
 }
