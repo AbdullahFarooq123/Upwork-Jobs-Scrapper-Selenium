@@ -1,4 +1,27 @@
 {
-  "refresh time(sec)" : 60,
-  "contact name" : "maryam"
+  "refresh_time": 60,
+  "contact_name": "Upwork JD",
+  "ValidationSettings": {
+    "valid_proposal_count": 20,
+    "valid_interviewing_count": 1,
+    "valid_invites_sent_count": 0,
+    "valid_elapsed_job_time": 360.0,
+    "valid_client_budget": 0.0,
+    "valid_hire_rate": 20,
+    "unsupported_country": [
+      "PAKISTAN",
+      "ISRAEL"
+    ],
+    "invalid_keywords": [
+      "php",
+      "wordpress",
+      "laravel",
+      "salesforce",
+      "envato",
+      "expensify",
+      "swift",
+      "suite",
+      "shopify"
+    ]
+  }
 }
