@@ -1,7 +1,6 @@
 {
   "refresh_time": 60,
   "contact_name": "Upwork JD",
-  "latest_chrome_version": "123.0.6312.106",
   "ValidationSettings": {
     "valid_proposal_count": 20,
     "valid_interviewing_count": 1,
