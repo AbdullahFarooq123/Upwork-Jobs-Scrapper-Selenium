@@ -3,3 +3,7 @@ Chrome Profile
 Models/__pycache__
 Utilities/__pycache__
 prev.json
+build
+dist
+*.spec
+*.ipynb*

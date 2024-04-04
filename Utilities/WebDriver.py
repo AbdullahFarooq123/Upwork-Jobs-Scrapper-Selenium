@@ -1,7 +1,9 @@
 import os
 import time
 
+import undetected_chromedriver
 from bs4 import BeautifulSoup
+from fake_useragent.fake import UserAgent
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import WebDriverException
@@ -14,25 +16,29 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def init_driver() -> webdriver:
+def init_driver(user_agent: str = None) -> webdriver:
     current_directory = os.getcwd()
     chrome_options = Options()
-    prefs = {"profile.default_content_setting_values.notifications": 2}
-    chrome_options.add_argument('--disable- notifications')
-    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    chrome_options.add_argument("--start-maximized")
+    if user_agent:
+        chrome_options.add_argument("--user-agent={}".format(user_agent))
     chrome_options.add_argument('--profile-directory=Default')
     chrome_options.add_argument(f'--user-data-dir={current_directory}\\Chrome Profile\\')
-    chrome_options.add_experimental_option("prefs", prefs)
-    # chrome_options.add_argument("--headless")
     try:
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-        driver.maximize_window()
-        return driver
-    except WebDriverException:
+        return undetected_chromedriver.Chrome(service=Service(ChromeDriverManager().install()),
+                                              options=chrome_options)
+    except WebDriverException as ex:
         print('Chrome already running!')
         print('Please close the previous chrome window and restart!')
+        print(f"{ex.msg}")
         exit(1)
-    return None
+
+
+def get_user_agent(chrome_version: str) -> str:
+    base_chrome_ua = UserAgent(browsers=['chrome'], os='windows').chrome
+    parts = base_chrome_ua.split(' ')
+    new_parts = [f'Chrome/{chrome_version}' if 'Chrome' in part else part for part in parts]
+    return ' '.join(new_parts)
 
 
 def get_whatsapp_txt_box(my_contact: str, driver: webdriver):
@@ -77,7 +83,6 @@ def get_whatsapp_txt_box(my_contact: str, driver: webdriver):
             text_box = None
             while text_box is None:
                 try:
-                    # fd365im1 to2l77zo bbv8nyr4 gfz4du6o ag5g9lrv bze30y65 kao4egtt mwp4sxku
                     text_box = footer.find_element(By.XPATH, '//footer//div[@role="textbox"]')
                 except NoSuchElementException:
                     print('Error : Cant Load Whatsapp text box (utilities.py : line 222)')

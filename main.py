@@ -1,19 +1,19 @@
 import time
-import pickle
 
 from Models.BotSettingsModel import BotSettings
 from Models.JobValidationModel import JobValidation
 from Utilities.FileReader import read_prev_seen_jobs, read_category_feed_data, read_settings_data
 from Utilities.FileWriter import write_seen_data
 from Utilities.RSS import read_data_from_feeds, read_items_by_category, get_valid_clients
-from Utilities.WebDriver import init_driver, send_job_details_to_whatsapp
+from Utilities.WebDriver import init_driver, send_job_details_to_whatsapp, get_user_agent
 
 rss_links = read_category_feed_data()
 prev_data = read_prev_seen_jobs()
 settings_json = read_settings_data()
 settings = BotSettings(**settings_json)
 validation_settings = JobValidation(**settings.ValidationSettings)
-driver = init_driver()
+user_agent = get_user_agent(chrome_version=settings.latest_chrome_version)
+driver = init_driver(user_agent=user_agent)
 driver.get("https://www.upwork.com/ab/account-security/login")
 while True:
     print('Bot is now running!')
