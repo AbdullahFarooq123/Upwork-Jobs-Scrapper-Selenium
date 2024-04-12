@@ -99,12 +99,20 @@ def click_element(driver: WebDriver, element: WebElement):
     ActionChains(driver).move_to_element(element).click(element).perform()
 
 
-def send_msg_to_txt_box(message: str, text_box: WebElement, category: str, driver: WebDriver):
+def send_msg_to_txt_box(message: str, text_box: WebElement, category: str):
+    message = convert_bmp(message)
     for m in message.splitlines():
-        text_box.send_keys(m)
+        try:
+            text_box.send_keys(m)
+        except WebDriverException:
+            continue
         text_box.send_keys(Keys.SHIFT, Keys.ENTER)
     text_box.send_keys(Keys.SHIFT, Keys.ENTER)
     text_box.send_keys(f'FROM : {category}\n')
+
+
+def convert_bmp(text: str) -> str:
+    return ''.join([char for char in text if ord(char) <= 0xFFFF])
 
 
 def send_job_details_to_whatsapp(driver, contact_name, valid_clients) -> bool:
@@ -118,6 +126,6 @@ def send_job_details_to_whatsapp(driver, contact_name, valid_clients) -> bool:
     for client in valid_clients:
         if client is not None:
             text_box = get_text_box(driver)
-            send_msg_to_txt_box(client.get_message(), text_box, client.category, driver=driver)
+            send_msg_to_txt_box(client.get_message(), text_box, client.category)
             time.sleep(5)
     return True

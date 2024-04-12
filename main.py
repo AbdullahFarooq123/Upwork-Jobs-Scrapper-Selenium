@@ -5,7 +5,7 @@ from Models.JobValidationModel import JobValidation
 from Utilities.FileReader import read_prev_seen_jobs, read_category_feed_data, read_settings_data
 from Utilities.FileWriter import write_seen_data
 from Utilities.RSS import read_data_from_feeds, read_items_by_category, get_valid_clients
-from Utilities.WebDriver import init_driver, send_job_details_to_whatsapp, get_user_agent
+from Utilities.WebDriver import init_driver, send_job_details_to_whatsapp
 
 rss_links = read_category_feed_data()
 prev_data = read_prev_seen_jobs()
